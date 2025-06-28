@@ -13,3 +13,4 @@ PlaceholderAPI support for [Geyser](https://github.com/GeyserMC/Geyser)
 * geyser_platform: The player's platform e.g.: Win10, Switch, Android...
 * geyser_game_version: The player's game version
 * geyser_input_mode: The player's input mode
+* geyser_is_bedrock: If player is bedrock True else False

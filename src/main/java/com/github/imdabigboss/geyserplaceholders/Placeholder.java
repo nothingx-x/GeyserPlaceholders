@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.geysermc.geyser.GeyserImpl;
 import org.geysermc.geyser.session.GeyserSession;
 import org.geysermc.geyser.network.MinecraftProtocol;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -66,6 +67,8 @@ public class Placeholder extends PlaceholderExpansion {
                 return getPlayerGameVersion(player);
             case "input_mode":
                 return getPlayerInputMode(player);
+            case "is_bedrock":
+                return getIsBedrockPlayer(player);
         }
 
         return null;
@@ -86,7 +89,7 @@ public class Placeholder extends PlaceholderExpansion {
 
         return javaVersions;
     }
-    
+
     /**
      * Get the supported bedrock version
      * @return The supported bedrock version
@@ -145,6 +148,22 @@ public class Placeholder extends PlaceholderExpansion {
             return geyserPlayer.getClientData().getCurrentInputMode().toString();
         } else {
             return "";
+        }
+    }
+
+    /**
+     * Get if player bedrock player
+     * @param player The Player
+     * @return True if bedrock Player else False
+     */
+    @NotNull
+    private static String getIsBedrockPlayer(Player player) {
+        GeyserSession geyserPlayer = GeyserImpl.getInstance().connectionByUuid(player.getUniqueId());
+        if (geyserPlayer != null) {
+            return "true";
+        }
+        else {
+            return "false";
         }
     }
 }
